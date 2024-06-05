@@ -3,16 +3,17 @@ use crate::remapper::*;
 use anyhow::{Context, Result};
 use std::path::PathBuf;
 use std::time::Duration;
-use structopt::StructOpt;
+use clap::Parser;
 
 mod deviceinfo;
 mod mapping;
 mod remapper;
 
-#[derive(Debug, StructOpt)]
-#[structopt(
+/// Remap libinput evdev keyboard inputs
+#[derive(Debug, Parser)]
+#[command(
     name = "evremap",
-    about = "Remap libinput evdev keyboard inputs",
+    about,
     author = "Wez Furlong"
 )]
 enum Opt {
@@ -29,11 +30,11 @@ enum Opt {
     /// to the input devices.
     Remap {
         /// Specify the configuration file to be loaded
-        #[structopt(name = "CONFIG-FILE")]
+        #[arg(name = "CONFIG-FILE")]
         config_file: PathBuf,
 
         /// Number of seconds for user to release keys on startup
-        #[structopt(short, long, default_value = "2")]
+        #[arg(short, long, default_value = "2")]
         delay: f64,
     },
 }
@@ -65,7 +66,7 @@ fn setup_logger() {
 
 fn main() -> Result<()> {
     setup_logger();
-    let opt = Opt::from_args();
+    let opt = Opt::parse();
 
     match opt {
         Opt::ListDevices => deviceinfo::list_devices(),
