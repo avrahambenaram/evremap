@@ -95,6 +95,9 @@ output = ["KEY_MUTE"]
 * How do I list available key codes?
   `evremap list-keys`
 
+* Is there a GUI for editing the config file?
+  Yes, take a look at [Evremap-GUI](https://github.com/M8850/Evremap-GUI)
+
 ## Building it
 
 ```console

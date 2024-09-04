@@ -1,6 +1,6 @@
 use crate::mapping::*;
 use anyhow::*;
-use evdev_rs::{DeviceWrapper, Device, GrabMode, InputEvent, ReadFlag, TimeVal, UInputDevice};
+use evdev_rs::{Device, DeviceWrapper, GrabMode, InputEvent, ReadFlag, TimeVal, UInputDevice};
 use std::cmp::Ordering;
 use std::collections::{HashMap, HashSet};
 use std::path::Path;

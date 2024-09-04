@@ -7,7 +7,7 @@ use thiserror::Error;
 
 #[derive(Debug, Clone)]
 pub struct MappingConfig {
-    pub device_name: String,
+    pub device_name: Option<String>,
     pub phys: Option<String>,
     pub mappings: Vec<Mapping>,
 }
@@ -114,7 +114,9 @@ impl Into<Mapping> for RemapConfig {
 
 #[derive(Debug, Deserialize)]
 struct ConfigFile {
-    device_name: String,
+    #[serde(default)]
+    device_name: Option<String>,
+
     #[serde(default)]
     phys: Option<String>,
 
